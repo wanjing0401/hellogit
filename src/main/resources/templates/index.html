@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>班级管理系统</title>
+</head>
+<body>
+<form th:action="@{/index}">
+    状态：
+    <select name="state" >
+        <option th:value="0"  th:text="全部"></option>
+        <option th:value="1" th:text="满员"></option>
+        <option th:value="2" th:text="未满员"></option>
+    </select>
+    班级名称：<input type="text" name="className">
+   <input th:type="submit" value="查询">
+<table border="1">
+    <tr >
+        <th>班级名称</th>
+        <th>限定人数</th>
+        <th>已有人数</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="list:${byName.getRecords()}">
+        <td th:text="${list.getClassName()}"></td>
+        <td th:text="${list.getEstimate()}"></td>
+        <td th:text="${list.getActual()}"></td>
+        <td th:text="${list.getState()}==1?'满员':'未满员'"></td>
+        <td>
+            <a th:href="@{/index}">新增</a>
+            <a th:href="@{/student(id=${list.getClassId()})}">详情</a>
+        </td>
+    </tr>
+</table>
+</form>
+第<span a th:text="${byName.getCurrent()}"></span>页/共<span th:text="${byName.getPages()}"></span>页
+<a th:if="${byName.getCurrent()!=1}" th:href="@{/index(pageNum=1)}">首页</a>
+<a th:if="${byName.getCurrent()!=1}" th:href="@{/index(pageNum=${byName.getCurrent()-1})}">上一页</a>
+<a th:if="${byName.getCurrent()!=byName.getPages()}" th:href="@{/index(pageNum=${byName.getCurrent()+1})}">下一页</a>
+<a th:if="${byName.getCurrent()!=byName.getPages()}" th:href="@{/index(pageNum=${byName.getPages()})}">末页</a>
+</body>
+</html>

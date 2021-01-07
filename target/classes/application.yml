@@ -1,0 +1,30 @@
+
+spring:
+  #������Ŀ����
+  application:
+    name: fenban
+  #��������Դ
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yuekao?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  thymeleaf:
+    cache: false # ����ʱ�رջ���,��Ȼû������ʵʱҳ��
+    mode: HTML # �÷��ϸ�� HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+#���ö˿�
+server:
+  port: 8080
+#����mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.changan.springboot_mybatis.entity
+
+#��־����(����mybatis��sql��ӡ)
+logging:
+  level:
+    com.changan.springboot_mybatis.mapper.*: debug
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1 th:text="${list.get(0).getClassName()}+'班学生名单'"></h1>
+    <table border="1">
+        <tr>
+            <th>学生名称</th>
+            <th>学生性别</th>
+            <th>出生日期</th>
+        </tr>
+        <tr th:each="list1:${list}">
+            <td th:text="${list1.getStudentName()}"></td>
+            <td th:text="${list1.getStudentSex()}"></td>
+            <td th:text="${list1.getStudentTime()}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

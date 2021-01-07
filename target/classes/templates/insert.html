@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="get" th:action="@{/insert}">
+
+    姓名:<input type="text" name="studentName">
+    性别:<select name="studentSex">
+    <option value="男" th:text="男" selected></option>
+    <option value="女" th:text="女"></option>
+
+</select>
+    出生日期:<input type="text" name="studentTime">
+
+    班级:<select name="studentClassId">
+    <option  th:value="${session.classId}" th:text="${session.className}" selected></option>
+
+
+</select>
+    <input type="submit" th:value="新增">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxw.mapper.StudentMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lxw.entity.Student">
+        <id column="student_id" property="studentId" />
+        <result column="student_name" property="studentName" />
+        <result column="student_sex" property="studentSex" />
+        <result column="student_time" property="studentTime" />
+        <result column="student_class_id" property="studentClassId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, student_name, student_sex, student_time, student_class_id
+    </sql>
+    <select id="findStudent" resultType="com.lxw.entity.Student">
+    select s.*,s2.class_name as classname from student s,class s2 where s.student_class_id=s2.class_id and s2.class_id=#{id}
+</select>
+</mapper>
